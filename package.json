@@ -1,0 +1,49 @@
+{
+  "name": "gulp-rev-cleaner",
+  "version": "0.0.1",
+  "description": "Old static asset revision files cleanup",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shonny-ua/gulp-rev-cleaner"
+  },
+  "author": "Oleksandr Ovcharenko <shonny.ua@gmail.com>",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "test": "mocha"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "keywords": [
+    "gulpplugin",
+    "gulp",
+    "rev",
+    "revision",
+    "hash",
+    "optimize",
+    "version",
+    "versioning",
+    "cache",
+    "expire",
+    "static",
+    "asset",
+    "assets",
+    "clean",
+    "cleanup"
+  ],
+  "dependencies": {
+    "through2": ">=0.5.1"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "bugs": {
+    "url": "https://github.com/shonny-ua/gulp-rev-cleaner/issues"
+  },
+  "_from": "gulp-rev-cleaner@0.0.1",
+  "homepage": "https://github.com/shonny-ua/gulp-rev-cleaner"
+}
