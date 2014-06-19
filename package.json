@@ -1,13 +1,16 @@
 {
-  "name": "gulp-rev-cleaner",
-  "version": "0.0.1",
-  "description": "Old static asset revision files cleanup",
+  "name": "gulp-rev-outdated",
+  "version": "0.0.2",
+  "description": "Old static asset revision files filter",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/shonny-ua/gulp-rev-cleaner"
+    "url": "https://github.com/shonny-ua/gulp-rev-outdated"
   },
-  "author": "Oleksandr Ovcharenko <shonny.ua@gmail.com>",
+  "author": {
+    "name": "Oleksandr Ovcharenko",
+    "email": "shonny.ua@gmail.com"
+  },
   "main": "index.js",
   "files": [
     "index.js"
@@ -29,21 +32,25 @@
     "versioning",
     "cache",
     "expire",
+    "old",
+    "outdated",
     "static",
     "asset",
     "assets",
     "clean",
-    "cleanup"
+    "cleanup",
+    "filtering",
+    "filter"
   ],
   "dependencies": {
-    "through2": ">=0.5.1"
+    "through2": ">=0.5.1",
+    "gulp-util": "^2.2.17"
   },
   "devDependencies": {
     "mocha": "*"
   },
   "bugs": {
-    "url": "https://github.com/shonny-ua/gulp-rev-cleaner/issues"
+    "url": "https://github.com/shonny-ua/gulp-rev-outdated/issues"
   },
-  "_from": "gulp-rev-cleaner@0.0.1",
-  "homepage": "https://github.com/shonny-ua/gulp-rev-cleaner"
+  "homepage": "https://github.com/shonny-ua/gulp-rev-outdated"
 }
