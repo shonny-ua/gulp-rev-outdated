@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/shonny-ua/gulp-rev-outdated.svg)](https://travis-ci.org/shonny-ua/gulp-rev-outdated)
-[![Dependencies](https://david-dm.org/shonny-ua/gulp-rev-outdated.png)](https://david-dm.org/shonny-ua/gulp-rev-outdated)
-[![devDependencies](https://david-dm.org/shonny-ua/gulp-rev-outdated/dev-status.png)](https://david-dm.org/shonny-ua/gulp-rev-outdated#info=devDependencies&view=table)
+[![Dependencies](https://david-dm.org/shonny-ua/gulp-rev-outdated.svg)](https://david-dm.org/shonny-ua/gulp-rev-outdated)
+[![devDependencies](https://david-dm.org/shonny-ua/gulp-rev-outdated/dev-status.svg)](https://david-dm.org/shonny-ua/gulp-rev-outdated#info=devDependencies&view=table)
 [![NPM version](https://badge.fury.io/js/gulp-rev-outdated.svg)](http://badge.fury.io/js/gulp-rev-outdated)
 
 # [gulp](https://github.com/wearefractal/gulp)-rev-outdated 
