@@ -3,7 +3,9 @@
 [![devDependencies](https://david-dm.org/shonny-ua/gulp-rev-outdated/dev-status.svg)](https://david-dm.org/shonny-ua/gulp-rev-outdated#info=devDependencies&view=table)
 [![NPM version](https://badge.fury.io/js/gulp-rev-outdated.svg)](http://badge.fury.io/js/gulp-rev-outdated)
 
-# [gulp](https://github.com/wearefractal/gulp)-rev-outdated 
+# [gulp](https://github.com/wearefractal/gulp)-rev-outdated
+
+[![NPM](https://nodei.co/npm/gulp-rev-outdated.png?downloads=true&stars=true)](https://nodei.co/npm/gulp-rev-outdated/)
 
 > Old static asset revision files filter.
 
