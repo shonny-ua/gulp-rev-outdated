@@ -28,7 +28,6 @@ var revOutdated  = require('gulp-rev-outdated');
 var cleaner      = require('gulp-rimraf');
 
 gulp.task('clean', function() {
-
     gulp.src( ['dist/js/vendors*.js'], {read: false})
         .pipe( revOutdated(1) ) // leave 1 latest asset file
         .pipe( cleaner() );
@@ -51,7 +50,6 @@ It's also possible to pass in all your asset files at once:
 [...]
 
 gulp.task('clean', function() {
-
     gulp.src( ['dist/**/*.*'], {read: false})
         .pipe( revOutdated(1) ) // leave 1 latest asset file
         .pipe( cleaner() );
