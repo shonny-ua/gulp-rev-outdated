@@ -44,6 +44,20 @@ gulp.task('clean', function() {
 });
 ```
 
+It's also possible to pass in all your asset files at once:
+
+```js
+[...]
+
+gulp.task('clean', function() {
+    gulp.src( ['dist/**/*.*'], {read: false})
+        .pipe( revOutdated(1) ) // leave 1 latest asset file
+        .pipe( cleaner() );
+
+    return;
+});
+```
+
 gulp.src option read false prevents gulp to read the contents of the file and makes this task a lot faster. If you need the file and it's contents after cleaning in the same stream, do not set the read option to false.
 
 ### Works with gulp-rev-outdated
