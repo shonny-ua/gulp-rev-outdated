@@ -1,6 +1,6 @@
 {
   "name": "gulp-rev-outdated",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Old static asset revision files filter",
   "license": "MIT",
   "repository": {

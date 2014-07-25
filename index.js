@@ -13,27 +13,26 @@ function plugin(keepQuantity) {
     return through.obj(function (file, enc, cb) {
         var regex = new RegExp('^(.*)-[0-9a-f]{8}\\' + path.extname(file.path) + '$');
         if (regex.test(file.path)) {
-            var n = regex.exec(file.path)[1];
-            if (lists[n] === undefined) {
-                lists[n] = [];
+            var identifier = regex.exec(file.path)[1];
+            if (lists[identifier] === undefined) {
+                lists[identifier] = [];
             }
-            lists[n].push({
+            lists[identifier].push({
                 file: file,
                 time: file.stat.ctime.getTime()
             });
         }
         cb();
     }, function (cb) {
-        var t = this;
-        Object.keys(lists).forEach(function (val) {
-            lists[val].sort(function (a, b) {
-                return b.time - a.time;
-            })
+        Object.keys(lists).forEach(function (identifier) {
+            lists[identifier].sort(function (a, b) {
+                    return b.time - a.time;
+                })
                 .slice(keepQuantity)
                 .forEach(function (f) {
-                    t.push(f.file);
-                }, t);
-        });
+                    this.push(f.file);
+                }, this);
+        }, this);
         cb();
     });
 }
