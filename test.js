@@ -12,6 +12,7 @@ var assets = [
     {path: 'css/style-a42f5380.css', time: 1403184303451},
     {path: 'css/style-1d87bebe.css', time: 1222222222222},
     {path: 'css/style-11111111.css', time: 1111111111111},
+    {path: 'css/style-11111111.min.css', time: 1111111111111},
     {path: 'css/style-00000000.css', time: 0},
     // Additional unique file
     {path: 'css/vendor.css', time: 0},
@@ -21,6 +22,7 @@ var assets = [
     {path: 'css/vendor-a42f5380.css', time: 1403184303451},
     {path: 'css/vendor-1d87bebe.css', time: 1222222222222},
     {path: 'css/vendor-11111111.css', time: 1111111111111},
+    {path: 'css/vendor-11111111.min.css', time: 1111111111111},
     {path: 'css/vendor-00000000.css', time: 0},
     // Test nested files
     {path: 'css/fonts/fontstyle.css', time: 0},
@@ -30,6 +32,7 @@ var assets = [
     {path: 'css/fonts/fontstyle-a42f5380.css', time: 1403184303451},
     {path: 'css/fonts/fontstyle-1d87bebe.css', time: 1222222222222},
     {path: 'css/fonts/fontstyle-11111111.css', time: 1111111111111},
+    {path: 'css/fonts/fontstyle-11111111.min.css', time: 1111111111111},
     {path: 'css/fonts/fontstyle-00000000.css', time: 0},
     // Try to trip regex
     {path: 'css/try-to-trip-regex.css', time: 0},
@@ -39,6 +42,7 @@ var assets = [
     {path: 'css/try-to-trip-regex-a42f5380.css', time: 1403184303451},
     {path: 'css/try-to-trip-regex-1d87bebe.css', time: 1222222222222},
     {path: 'css/try-to-trip-regex-11111111.css', time: 1111111111111},
+    {path: 'css/try-to-trip-regex-11111111.min.css', time: 1111111111111},
     {path: 'css/try-to-trip-regex-00000000.css', time: 0}
 ];
 
@@ -50,7 +54,7 @@ var fileCount;
 
 it('should filter 15 files', function (cb) {
     keepQuantity = 1;
-    filteredQuantity = 6 * uniqueFiles - keepQuantity * uniqueFiles;
+    filteredQuantity = 7 * uniqueFiles - keepQuantity * uniqueFiles;
     fileCount = 0;
 
     var stream = initStream(revOutdated(keepQuantity));
@@ -67,7 +71,7 @@ it('should filter 15 files', function (cb) {
 
 it('should filter 12 files using default keepQuantity option', function (cb) {
     keepQuantity = undefined;
-    filteredQuantity = 6 * uniqueFiles - 2 * uniqueFiles;
+    filteredQuantity = 7 * uniqueFiles - 2 * uniqueFiles;
     fileCount = 0;
 
     var stream = initStream(revOutdated());
@@ -84,7 +88,7 @@ it('should filter 12 files using default keepQuantity option', function (cb) {
 
 it('should filter correct files', function (cb) {
     keepQuantity = 3;
-    filteredQuantity = 6 * uniqueFiles - keepQuantity * uniqueFiles;
+    filteredQuantity = 7 * uniqueFiles - keepQuantity * uniqueFiles;
     fileCount = 0;
 
     var stream = initStream(revOutdated(keepQuantity));
@@ -92,7 +96,7 @@ it('should filter correct files', function (cb) {
     stream.on('data', function (file) {
         streamDataCheck(file);
         assert(
-            /\/(style|vendor|fontstyle|try-to-trip-regex)-(1d87bebe|11111111|00000000)\.css/.test(file.path),
+            /\/(style|vendor|fontstyle|try-to-trip-regex)-(1d87bebe|11111111|00000000)(?:\.min)?\.css/.test(file.path),
             'should filter correct files'
         );
     });
@@ -118,7 +122,7 @@ function initStream(stream) {
 
 function streamDataCheck(file) {
     assert(
-        /\/(style|vendor|fontstyle|try-to-trip-regex)-[0-9a-f]{8}\.css/.test(file.path),
+        /\/(style|vendor|fontstyle|try-to-trip-regex)-[0-9a-f]{8}(?:\.min)?\.css/.test(file.path),
         'should filter only revisioned files'
     );
     fileCount++;

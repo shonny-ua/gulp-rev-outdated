@@ -11,7 +11,7 @@ function plugin(keepQuantity) {
     var lists = {};
 
     return through.obj(function (file, enc, cb) {
-        var regex = new RegExp('^(.*)-[0-9a-f]{8}\\' + path.extname(file.path) + '$');
+        var regex = new RegExp('^(.*)-[0-9a-f]{8}(?:\\.min)?\\' + path.extname(file.path) + '$');
         if (regex.test(file.path)) {
             var identifier = regex.exec(file.path)[1];
             if (lists[identifier] === undefined) {
