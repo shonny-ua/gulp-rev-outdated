@@ -13,7 +13,7 @@ function plugin(keepQuantity) {
     return through.obj(function (file, enc, cb) {
         var regex = new RegExp('^(.*)-[0-9a-f]{8}(?:\\.min)?\\' + path.extname(file.path) + '$');
         if (regex.test(file.path)) {
-            var identifier = regex.exec(file.path)[1];
+            var identifier = regex.exec(file.path)[1] + path.extname(file.path);
             if (lists[identifier] === undefined) {
                 lists[identifier] = [];
             }
