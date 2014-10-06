@@ -24,6 +24,16 @@ var assets = [
     {path: 'css/vendor-11111111.css', time: 1111111111111},
     {path: 'css/vendor-11111111.min.css', time: 1111111111111},
     {path: 'css/vendor-00000000.css', time: 0},
+    // Additional unique another type file
+    {path: 'css/vendor.js', time: 0},
+    {path: 'css/vendorxxx.js', time: 0},
+    {path: 'css/vendor-22222222.js', time: 1403184415416},
+    {path: 'css/vendor-61e0be79.js', time: 1403184377571},
+    {path: 'css/vendor-a42f5380.js', time: 1403184303451},
+    {path: 'css/vendor-1d87bebe.js', time: 1222222222222},
+    {path: 'css/vendor-11111111.js', time: 1111111111111},
+    {path: 'css/vendor-11111111.min.js', time: 1111111111111},
+    {path: 'css/vendor-00000000.js', time: 0},
     // Test nested files
     {path: 'css/fonts/fontstyle.css', time: 0},
     {path: 'css/fonts/fontstylexxx.css', time: 0},
@@ -48,11 +58,11 @@ var assets = [
 
 var keepQuantity;
 // Uniques in 'assets'
-var uniqueFiles = 4;
+var uniqueFiles = 5;
 var filteredQuantity;
 var fileCount;
 
-it('should filter 15 files', function (cb) {
+it('should filter 30 files', function (cb) {
     keepQuantity = 1;
     filteredQuantity = 7 * uniqueFiles - keepQuantity * uniqueFiles;
     fileCount = 0;
@@ -69,14 +79,20 @@ it('should filter 15 files', function (cb) {
     stream.end();
 });
 
-it('should filter 12 files using default keepQuantity option', function (cb) {
+it('should filter 25 files of different types using default keepQuantity option', function (cb) {
     keepQuantity = undefined;
     filteredQuantity = 7 * uniqueFiles - 2 * uniqueFiles;
     fileCount = 0;
 
     var stream = initStream(revOutdated());
 
-    stream.on('data', streamDataCheck);
+    stream.on('data', function (file) {
+        streamDataCheck(file);
+        assert(
+            !/\/vendor-61e0be79\.(css|js)$/.test(file.path),
+            'should filter correct files'
+        );
+    });
 
     stream.on('end', function () {
         assert.equal(fileCount, filteredQuantity, 'Only ' + filteredQuantity + ' files should pass through the stream');
@@ -96,7 +112,7 @@ it('should filter correct files', function (cb) {
     stream.on('data', function (file) {
         streamDataCheck(file);
         assert(
-            /\/(style|vendor|fontstyle|try-to-trip-regex)-(1d87bebe|11111111|00000000)(?:\.min)?\.css/.test(file.path),
+            /\/(style|vendor|fontstyle|try-to-trip-regex)-(1d87bebe|11111111|00000000)(?:\.min)?\.(css|js)$/.test(file.path),
             'should filter correct files'
         );
     });
@@ -122,7 +138,7 @@ function initStream(stream) {
 
 function streamDataCheck(file) {
     assert(
-        /\/(style|vendor|fontstyle|try-to-trip-regex)-[0-9a-f]{8}(?:\.min)?\.css/.test(file.path),
+        /\/(style|vendor|fontstyle|try-to-trip-regex)-[0-9a-f]{8}(?:\.min)?\.(css|js)$/.test(file.path),
         'should filter only revisioned files'
     );
     fileCount++;
