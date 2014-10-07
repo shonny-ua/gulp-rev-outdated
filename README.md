@@ -24,8 +24,23 @@ Default value == 2.
 
 ```js
 var gulp         = require('gulp');
-var revOutdated  = require('gulp-rev-outdated');
-var cleaner      = require('gulp-rimraf');
+var gutil           = require('gulp-util');
+var rimraf          = require('rimraf');
+var revOutdated     = require('gulp-rev-outdated');
+var path            = require('path');
+var through         = require('through2');
+
+function cleaner() {
+    return through.obj(function(file, enc, cb){
+        rimraf( path.resolve( (file.cwd || process.cwd()), file.path), function (err) {
+            if (err) {
+                this.emit('error', new gutil.PluginError('Cleanup old files', err));
+            }
+            this.push(file);
+            cb();
+        }.bind(this));
+    });
+}
 
 gulp.task('clean', function() {
     gulp.src( ['dist/js/vendors*.js'], {read: false})
@@ -63,8 +78,6 @@ gulp.src option read false prevents gulp to read the contents of the file and ma
 ### Works with gulp-rev-outdated
 
 - [gulp-rev](https://github.com/sindresorhus/gulp-rev)
-- [gulp-rimraf](https://github.com/robrich/gulp-rimraf)
-- [gulp-clean](https://github.com/peter-vilja/gulp-clean)
 
 ## License
 
