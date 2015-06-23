@@ -7,6 +7,7 @@ var path = require('path');
 var PLUGIN_NAME = 'gulp-rev-outdated';
 
 function plugin(keepQuantity) {
+    'use strict';
     keepQuantity = parseInt(keepQuantity) || 2;
     var lists = {};
 
