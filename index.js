@@ -12,9 +12,15 @@ function plugin(keepQuantity) {
     var lists = {};
 
     return through.obj(function (file, enc, cb) {
-        var regex = new RegExp('^(.*)-[0-9a-f]{8,10}(?:\\.min)?\\' + path.extname(file.path) + '$');
+        var regex = new RegExp('^(.*)-[0-9a-f]{8,10}(\\.min)?\\' + path.extname(file.path) + '$');
         if (regex.test(file.path)) {
-            var identifier = regex.exec(file.path)[1] + path.extname(file.path);
+            var match = regex.exec(file.path);
+            var identifier;
+            if (match[2] === undefined) {
+                identifier = match[1] + path.extname(file.path);
+            } else {
+                identifier = match[1] + match[2] + path.extname(file.path);
+            }
             if (lists[identifier] === undefined) {
                 lists[identifier] = [];
             }
