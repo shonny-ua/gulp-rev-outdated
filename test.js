@@ -28,7 +28,9 @@ var assets = [
     {path: 'css/vendor.js', time: 0},
     {path: 'css/vendorxxx.js', time: 0},
     {path: 'css/vendor-22222222.js', time: 1403184415416},
+    {path: 'css/vendor-22222222.js.map', time: 1403184415416},
     {path: 'css/vendor-61e0be79.js', time: 1403184377571},
+    {path: 'css/vendor-61e0be79.js.map', time: 1403184377571},
     {path: 'css/vendor-a42f5380.js', time: 1403184303451},
     {path: 'css/vendor-1d87bebe.js', time: 1222222222222},
     {path: 'css/vendor-11111111.js', time: 1111111111111},
@@ -83,6 +85,7 @@ it('should filter 30 files', function (cb) {
         "css/vendor-1d87bebe.js",
         "css/vendor-11111111.js",
         "css/vendor-00000000.js",
+        "css/vendor-61e0be79.js.map",
         "css/fonts/fontstyle-61e0be79.css",
         "css/fonts/fontstyle-a42f5380.css",
         "css/fonts/fontstyle-1d87bebe.css",
@@ -211,7 +214,7 @@ function initStream(stream) {
 
 function streamDataCheck(file) {
     assert(
-        /\/(style|vendor|fontstyle|try-to-trip-regex)-[0-9a-f]{8}(?:\.min)?\.(css|js)$/.test(file.path),
+        /\/(style|vendor|fontstyle|try-to-trip-regex)-[0-9a-f]{8}(?:\.min)?\.(css|js)(?:\.map)?$/.test(file.path),
         'should filter only revisioned files'
     );
     fileCount++;
