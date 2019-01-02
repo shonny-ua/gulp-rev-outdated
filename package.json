@@ -1,6 +1,6 @@
 {
   "name": "gulp-rev-outdated",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "Old static asset revision files filter",
   "license": "MIT",
   "repository": {
@@ -43,11 +43,11 @@
     "filter"
   ],
   "dependencies": {
-    "gulp-util": "^3.0.0",
-    "through2": ">=0.5.1"
+    "through2": "^3.0.0",
+    "vinyl": "^2.2.0"
   },
   "devDependencies": {
-    "mocha": "*"
+    "mocha": "^5.2.0"
   },
   "bugs": {
     "url": "https://github.com/shonny-ua/gulp-rev-outdated/issues"

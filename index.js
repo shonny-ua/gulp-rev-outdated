@@ -1,6 +1,4 @@
 'use strict';
-var gutil = require('gulp-util');
-var PluginError = gutil.PluginError;
 var through = require('through2');
 var path = require('path');
 
@@ -20,7 +18,7 @@ function plugin(keepQuantity) {
             }
             lists[identifier].push({
                 file: file,
-                time: file.stat.ctime.getTime()
+                time: file.stat.mtime.getTime()
             });
         }
         cb();

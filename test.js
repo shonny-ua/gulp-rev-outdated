@@ -1,8 +1,8 @@
 'use strict';
-var assert = require('assert');
-var gutil = require('gulp-util');
+var assert      = require('assert');
+var Vinyl       = require('vinyl');
 var revOutdated = require('./index');
-var path = require('path');
+var path        = require('path');
 
 var assets = [
     {path: 'css/style.css', time: 0},
@@ -127,9 +127,14 @@ it('should filter correct files', function (cb) {
 
 function initStream(stream) {
     assets.forEach(function (asset) {
-        stream.write(new gutil.File({
+        var dateByTime = new Date(asset.time);
+        stream.write(new Vinyl({
             path: asset.path,
-            stat: {ctime: new Date(asset.time)},
+            stat: {
+                ctime: dateByTime,
+                mtime: dateByTime,
+                atime: dateByTime
+            },
             contents: new Buffer(' ')
         }));
     });
